@@ -1,0 +1,297 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+
+/* 
+.top-view {
+  width: 300px;
+  height: 300px;
+  border: 2px solid #a855f7;
+  box-shadow: 0 0 2px #c084fc;
+  border-radius: 30px;
+   transform: 
+    rotate(45deg);
+  transform-style: preserve-3d;
+} */
+
+body {
+  margin: 0;
+  background: #0b0b12;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Perspective (camera) */
+.scene {
+  perspective: 1200px;
+}
+
+/* Main 3D card */
+.card {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  transform: rotateX(60deg) rotateZ(-45deg);
+  transform-style: preserve-3d;
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+  border-radius: 40px;
+  /* background: radial-gradient(circle at center, #1a0125, #000); */
+  border: 2px solid #827a89;
+
+  transform: translateZ(340px) scale(0.05);
+  opacity: 0;
+  /* filter: blur(6px); */
+  transform-origin: center;
+  will-change: transform, opacity;
+  
+  animation: merge 3s ease-in-out forwards;
+}
+
+.layer-tool {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: rgba(212, 205, 222, 0.82);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.55);
+}
+
+.layer-tool i {
+  font-size: 24px;
+  color: #9ca3af;
+}
+
+.layer-3 .layer-tool,
+.layer-3 .layer-tool i {
+  color: #a855f7;
+  text-shadow: 0 0 12px rgba(168, 85, 247, 0.5);
+}
+
+/* .layer-1 { transform: translateZ(300px)}
+.layer-2 { transform: translateZ(300px)}
+.layer-3 { transform: translateZ(300px)}
+.layer-4 { transform: translateZ(300px)}
+.layer-5 { transform: translateZ(300px)} */
+
+/* Stagger delays */
+.layer-1 {
+  animation-delay: 1s;
+}
+
+.layer-2 {
+  animation-delay: 1.6s;
+}
+
+.layer-3 {
+  animation-delay: 2.2s;
+}
+
+.layer-4 {
+  animation-delay: 2.8s;
+}
+
+.layer-5 {
+  animation-delay: 3.4s;
+}
+
+/* Keyframes */
+@keyframes merge {
+  0% {
+    transform: translateZ(300px) scale(0.05);
+    opacity: 0;
+    border-color: #827a89;
+  }
+
+  10% {
+    transform: translateZ(310px) scale(0.1);
+    opacity: 1;
+    border-color: #827a89;
+  }
+
+  15% {
+    transform: translateZ(320px) scale(0.2);
+    opacity: 1;
+    border-color: #827a89;
+  }
+
+  20% {
+    transform: translateZ(330px) scale(0.3);
+    opacity: 1;
+    border-color: #827a89;
+  }
+
+  25% {
+    transform: translateZ(340px) scale(0.4);
+    opacity: 1;
+    border-color: #827a89;
+  }
+
+  25% {
+    transform: translateZ(345px) scale(0.5);
+    opacity: 1;
+    border-color: #827a89;
+  }
+
+  35% {
+    opacity: 1;
+    transform: translateZ(350px) scale(1);
+    border-color: #827a89;
+  }
+
+  60% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateZ(0px) scale(1);
+    border-color: #a855f7;
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+/* Top surface */
+.card-top {
+  position: absolute;
+  inset: 0;
+  /* background: radial-gradient(circle at center, #111 60%, #000); */
+  background:
+    radial-gradient(circle at center, #0f0f15, #000),
+    url("./Gemini_Generated_Image_9o9zx49o9zx49o9z.png");
+  background-blend-mode: soft-light;
+
+
+  /* transform: translateZ(350px); */
+
+  opacity: 1;
+
+  border-radius: 40px;
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  color: #827a89;
+
+  border: 2px solid #a855f7;
+
+  box-shadow:
+    0 0 2px #a855f7,
+    /* 0 0 10px #a855f7, */
+    /* 0 0 30px #9333ea, */
+    inset 0 0 20px rgba(168, 85, 247, 0.2);
+}
+
+
+.ai-core {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: #c4b5fd;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(10px) scale(0.9);
+  text-shadow:
+    0 0 12px rgba(168, 85, 247, 0.48),
+    0 0 24px rgba(168, 85, 247, 0.24);
+  animation: ai-reveal 0.9s cubic-bezier(0.2, 0.9, 0.2, 1) 6.8s forwards;
+  z-index: 1;
+}
+
+.ai-core span {
+  font-size: 36px;
+}
+
+.ai-icon {
+  width: 64px;
+  height: 64px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ai-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: currentColor;
+  stroke-width: 3;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@keyframes ai-reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.9);
+  }
+
+  70% {
+    opacity: 1;
+    transform: translateY(0) scale(1.05);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+/* Thickness (bottom layer) */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 40px;
+
+  /* background: linear-gradient(145deg, #6d28d9, #a855f7); */
+  background-image: url(./vite-featurepanel-1-background.BHnDg8j4.jpg);
+  background-size: cover;
+  /* fills element */
+  /* background-position: center;    */
+  background-position: right;
+  background-repeat: no-repeat;
+
+  transform: translateZ(-30px);
+}
+
+/* Glow layer */
+/* .card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+
+  background: rgba(168, 85, 247, 0.4);
+  filter: blur(15px);
+
+  transform: translateZ(-15px);
+} */
